@@ -7,7 +7,6 @@ const filterOut = (contacts, filter) => {
   return contacts.filter(contact =>
     contact.name.toLowerCase().includes(filter.toLowerCase())
   );
-  // return contacts;
 };
 
 export const List = () => {
@@ -18,9 +17,7 @@ export const List = () => {
   return (
     <ContactList>
       {filteredContacts.map(contact => (
-        <li key={contact.id}>
-          <Item {...contact} />
-        </li>
+        <Item key={contact.id} {...contact} />
       ))}
     </ContactList>
   );

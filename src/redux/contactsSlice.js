@@ -3,26 +3,21 @@ import { createSlice, nanoid } from '@reduxjs/toolkit';
 
 const contactsSlice = createSlice({
   name: 'contacts',
-  initialState: initContacts,
+  initialState: { contacts: initContacts },
   reducers: {
-    addContact: {
-      reducer(state, action) {
-        const contactExists = state.find(
-          contact =>
-            contact.name.toLowerCase() === action.payload.name.toLowerCase()
-        );
-        contactExists
-          ? alert(`${contactExists.name} this contact already exists`)
-          : state.push(action.payload);
-      },
-      prepare(contact) {
-        return {
-          payload: { ...contact, id: nanoid() },
-        };
-      },
+    addContact(state, action) {
+      const contactExists = state.contacts.find(
+        contact =>
+          contact.name.toLowerCase() === action.payload.name.toLowerCase()
+      );
+      contactExists
+        ? alert(`${contactExists.name} this contact already exists`)
+        : state.contacts.push({ id: nanoid(), ...action.payload });
     },
     deleteContact(state, action) {
-      state = state.filter(contact => contact.id !== action.payload);
+      state.contacts = state.contacts.filter(
+        contact => contact.id !== action.payload
+      );
     },
   },
 });

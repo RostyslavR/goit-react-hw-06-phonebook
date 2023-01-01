@@ -4,7 +4,7 @@ import { applyFilter } from 'redux/filterSlice';
 import { Input, Label } from './FilterStyled.styled';
 
 export const Filter = () => {
-  const filter = useSelector(getFilter);
+  const  filter  = useSelector(getFilter);
   const dispatch = useDispatch();
   const handleFilter = e => dispatch(applyFilter(e.target.value));
 
